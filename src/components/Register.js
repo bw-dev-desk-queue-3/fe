@@ -183,7 +183,7 @@ const Register = props => {
             </label>
 
             {/* Student/Teacher Dropdown */}
-            <label>Role&nbsp;
+            <label>Role<br></br>
                 <select
                     name="is_admin"
                     value={formValues.role}
