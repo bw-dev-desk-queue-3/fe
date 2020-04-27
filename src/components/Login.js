@@ -16,7 +16,7 @@ const Login = () => {
   const [errors, setErrors] = useState({
     username: '',
     password: ''
-  })
+  });
 
   const validate = (e) => {
     yup
@@ -67,10 +67,9 @@ const Login = () => {
 
   return (
     <form className="login" onSubmit={onSubmit}>
-      <label htmlFor='username'>
+      <label>
         Username
         <input
-          id="username"
           name="username"
           type="text"
           value={user.username}
@@ -78,10 +77,9 @@ const Login = () => {
         />
       </label>
       {errors.username && <p className="error">{errors.username}</p>}
-      <label htmlFor='password'>
+      <label>
         Password
         <input
-          id="password"
           name="password"
           type="password"
           value={user.password}
