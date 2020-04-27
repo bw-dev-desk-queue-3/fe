@@ -123,12 +123,13 @@ const Register = props => {
 
     /***************************** JSX *****************************/
     return (
-        <form onSubmit={onSubmit}>
+        <form className="register" onSubmit={onSubmit}>
+            
+            <h2>User Registration</h2>
 
             {/* Text input for First Name */}
-            <label htmlFor="fname">First Name
+            <label>First Name
                 <input
-                    id="fname"
                     name="fname"
                     type="text"
                     value={formValues.fname}
@@ -138,9 +139,8 @@ const Register = props => {
             </label>
 
             {/* Text input for Last Name */}
-            <label htmlFor="lname">Last Name
+            <label>Last Name
                 <input
-                    id="lname"
                     name="lname"
                     type="text"
                     value={formValues.lname}
@@ -150,9 +150,8 @@ const Register = props => {
             </label>
 
             {/* Text input for Username */}
-            <label htmlFor="username">Username
+            <label>Username
                 <input
-                    id="username"
                     name="username"
                     type="text"
                     value={formValues.username}
@@ -162,9 +161,8 @@ const Register = props => {
             </label>
 
             {/* Text input for Password */}
-            <label htmlFor="password">Password
+            <label>Password
                 <input
-                    id="password"
                     name="password"
                     type="password"
                     value={formValues.password}
@@ -174,9 +172,8 @@ const Register = props => {
             </label>
 
             {/* Text input for Email */}
-            <label htmlFor="email">Email
+            <label>Email
                 <input
-                    id="email"
                     name="email"
                     type="text"
                     value={formValues.email}
@@ -186,9 +183,8 @@ const Register = props => {
             </label>
 
             {/* Student/Teacher Dropdown */}
-            <label htmlFor="role">Role
+            <label>Role&nbsp;
                 <select
-                    id="role"
                     name="role"
                     value={formValues.role}
                     onChange={onInputChange}
@@ -201,9 +197,8 @@ const Register = props => {
             </label>
 
             {/* Text input for Cohort */}
-            <label htmlFor="cohort">Cohort
+            <label>Cohort
                 <input
-                    id="cohort"
                     name="cohort"
                     type="text"
                     value={formValues.cohort}
