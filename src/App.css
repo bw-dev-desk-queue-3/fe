@@ -17,7 +17,7 @@
   margin-top: 3%;
 }
 
-.login input {
+.login input, .login textarea {
   width: 100%;
   border: 1px solid black;
 }
@@ -28,4 +28,12 @@
   padding: 1%;
   width: 25%;
   align-self: center;
+}
+
+.error {
+  color: red;
+}
+
+.textarea {
+  min-height: 4rem;
 }
