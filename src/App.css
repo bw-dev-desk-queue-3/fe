@@ -6,19 +6,20 @@
   max-width: 100%;
 }
 
-.login, .register {
+.login, .register, .create-ticket {
   display: flex;
   flex-direction: column;
   width: 40%;
   margin: 0 auto;
 }
 
-.login > *, .register > * {
+.login > *, .register > *, .create-ticket > * {
   margin-top: 3%;
 }
 
 .login input, .login textarea,
-.register input, .register textarea {
+.register input, .register textarea,
+.create-ticket input, .create-ticket textarea {
   width: 100%;
   border: 1px solid black;
 }
@@ -29,7 +30,8 @@
 }
 
 .login button,
-.register button {
+.register button,
+.create-ticket button {
   border: 1px solid grey;
   border-radius: 10px;
   padding: 1%;
