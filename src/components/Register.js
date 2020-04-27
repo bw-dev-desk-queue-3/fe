@@ -3,12 +3,12 @@ import * as yup from 'yup'
 
 /************************ Validation Format ************************/
 const formSchema = yup.object().shape({
-    fname:
+    first_name:
         yup
             .string()
             .min(3, 'Your name must contain at least 3 letters')
             .required('You must enter your first name'),
-    lname:
+    last_name:
         yup
             .string()
             .min(3, 'Your name must contain at least 3 letters')
@@ -27,10 +27,10 @@ const formSchema = yup.object().shape({
             .string()
             .email('Enter a valid email')
             .required('You must enter a valid email'),
-    role:
+    is_admin:
         yup
             .string()
-            .matches(/student|teacher/, 'Select a valid role')
+            .matches(/false|true/, 'Select a valid role')
             .required('You must select a role'),
     cohort:
         yup
@@ -42,23 +42,23 @@ const Register = props => {
 
     //Initial formValues
     const initFormValues = {
-        fname: '',
-        lname: '',
+        first_name: '',
+        last_name: '',
         username: '',
         password: '',
         email: '',
-        role: '',
+        is_admin: '',
         cohort: ''
     }
 
     //Initial formErrors
     const initFormErrors = {
-        fname: '',
-        lname: '',
+        first_name: '',
+        last_name: '',
         username: '',
         password: '',
         email: '',
-        role: '',
+        is_admin: '',
         cohort: ''
     }
 
@@ -130,23 +130,23 @@ const Register = props => {
             {/* Text input for First Name */}
             <label>First Name
                 <input
-                    name="fname"
+                    name="first_name"
                     type="text"
                     value={formValues.fname}
                     onChange={onInputChange}
                 />
-                {formErrors.fname.length > 3 ? (<p className="error">{formErrors.fname}</p>) : null}
+                {formErrors.first_name.length > 3 ? (<p className="error">{formErrors.first_name}</p>) : null}
             </label>
 
             {/* Text input for Last Name */}
             <label>Last Name
                 <input
-                    name="lname"
+                    name="last_name"
                     type="text"
                     value={formValues.lname}
                     onChange={onInputChange}
                 />
-                {formErrors.lname.length > 3 ? (<p className="error">{formErrors.lname}</p>) : null}
+                {formErrors.last_name.length > 3 ? (<p className="error">{formErrors.last_name}</p>) : null}
             </label>
 
             {/* Text input for Username */}
@@ -183,17 +183,17 @@ const Register = props => {
             </label>
 
             {/* Student/Teacher Dropdown */}
-            <label>Role&nbsp;
+            <label>Role<br></br>
                 <select
-                    name="role"
+                    name="is_admin"
                     value={formValues.role}
                     onChange={onInputChange}
                 >
                     <option value="">-- Select --</option>
-                    <option value="student">Student</option>
-                    <option value="teacher">Teacher</option>
+                    <option value="false">Student</option>
+                    <option value="true">Teacher</option>
                 </select>
-                {formErrors.role.length > 0 ? (<p className="error">{formErrors.role}</p>) : null}
+                {formErrors.is_admin.length > 0 ? (<p className="error">{formErrors.is_admin}</p>) : null}
             </label>
 
             {/* Text input for Cohort */}
