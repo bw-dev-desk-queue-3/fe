@@ -6,23 +6,30 @@
   max-width: 100%;
 }
 
-.login {
+.login, .register {
   display: flex;
   flex-direction: column;
   width: 40%;
   margin: 0 auto;
 }
 
-.login > * {
+.login > *, .register > * {
   margin-top: 3%;
 }
 
-.login input, .login textarea {
+.login input, .login textarea,
+.register input, .register textarea {
   width: 100%;
   border: 1px solid black;
 }
 
-.login button {
+.register select {
+  width: 25%;
+  border: 1px solid black;
+}
+
+.login button,
+.register button {
   border: 1px solid grey;
   border-radius: 10px;
   padding: 1%;
