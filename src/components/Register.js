@@ -1,6 +1,43 @@
 import React, { useState, useEffect } from 'react'
 import * as yup from 'yup'
 
+/************************ Validation Format ************************/
+const formSchema = yup.object().shape({
+    fname:
+        yup
+            .string()
+            .min(3, 'Your name must contain at least 3 letters')
+            .required('You must enter your first name'),
+    lname:
+        yup
+            .string()
+            .min(3, 'Your name must contain at least 3 letters')
+            .required('You must enter your last name'),
+    username:
+        yup
+            .string()
+            .required('You must enter a username'),
+    password:
+        yup
+            .string()
+            .min(8, 'Your password must be at least 8 characters long')
+            .required('You must enter a password'),
+    email:
+        yup
+            .string()
+            .email('Enter a valid email')
+            .required('You must enter a valid email'),
+    role:
+        yup
+            .string()
+            .matches(/student|teacher/, 'Select a valid role')
+            .required('You must select a role'),
+    cohort:
+        yup
+            .string()
+            .required('You must enter your Cohort')
+})
+
 const Register = props => {
 
     //Initial formValues
@@ -24,43 +61,6 @@ const Register = props => {
         role: '',
         cohort: ''
     }
-
-    /************************ Validation Format ************************/
-    const formSchema = yup.object().shape({
-        fname:
-            yup
-                .string()
-                .min(3, 'Your name must contain at least 3 letters')
-                .required('You must enter your first name'),
-        lname:
-            yup
-                .string()
-                .min(3, 'Your name must contain at least 3 letters')
-                .required('You must enter your last name'),
-        username:
-            yup
-                .string()
-                .required('You must enter a username'),
-        password:
-            yup
-                .string()
-                .min(8, 'Your password must be at least 8 characters long')
-                .required('You must enter a password'),
-        email:
-            yup
-                .string()
-                .email('Enter a valid email')
-                .required('You must enter a valid email'),
-        role:
-            yup
-                .string()
-                .matches(/student|teacher/, 'Select a valid role')
-                .required('You must select a role'),
-        cohort:
-            yup
-                .string()
-                .required('You must enter your Cohort')
-    })
 
     /******************************* STATES *******************************/
 
@@ -124,7 +124,7 @@ const Register = props => {
     /***************************** JSX *****************************/
     return (
         <form className="register" onSubmit={onSubmit}>
-            
+
             <h2>User Registration</h2>
 
             {/* Text input for First Name */}
