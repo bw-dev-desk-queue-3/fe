@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import * as yup from 'yup'
+import axios from "axios"
 
 /************************ Validation Format ************************/
 const formSchema = yup.object().shape({
@@ -116,6 +117,15 @@ const Register = props => {
     //Submits the Registration Form data to the server
     const onSubmit = e => {
         e.preventDefault()
+
+        axios.post(`https://bw-dev-desk.herokuapp.com/api/register`, formValues)
+            .then(res => {
+                console.log({ res })
+            })
+            .catch(err => {
+                console.log({ err })
+                console.log({ formValues })
+            })
 
         //Reset the form
         setFormValues(initFormValues)
