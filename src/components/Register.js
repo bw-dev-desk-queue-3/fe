@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import * as yup from 'yup'
 
-const Register = props =>{ 
+const Register = props => {
 
     //Initial formValues
     const initFormValues = {
@@ -28,38 +28,38 @@ const Register = props =>{
     /************************ Validation Format ************************/
     const formSchema = yup.object().shape({
         fname:
-        yup
-            .string()
-            .min(3, 'Your name must contain at least 3 letters')
-            .required('You must enter your first name'),
+            yup
+                .string()
+                .min(3, 'Your name must contain at least 3 letters')
+                .required('You must enter your first name'),
         lname:
-        yup
-            .string()
-            .min(3, 'Your name must contain at least 3 letters')
-            .required('You must enter your last name'),
+            yup
+                .string()
+                .min(3, 'Your name must contain at least 3 letters')
+                .required('You must enter your last name'),
         username:
-        yup
-            .string()
-            .required('You must enter a username'),
+            yup
+                .string()
+                .required('You must enter a username'),
         password:
-        yup
-            .string()
-            .min(8, 'Your password must be at least 8 characters long')
-            .required('You must enter a password'),
+            yup
+                .string()
+                .min(8, 'Your password must be at least 8 characters long')
+                .required('You must enter a password'),
         email:
-        yup
-            .string()
-            .email('Enter a valid email')
-            .required('You must enter a valid email'),
+            yup
+                .string()
+                .email('Enter a valid email')
+                .required('You must enter a valid email'),
         role:
-        yup
-            .string()
-            .matches(/student|teacher/, 'Select a valid role')
-            .required('You must select a role'),
+            yup
+                .string()
+                .matches(/student|teacher/, 'Select a valid role')
+                .required('You must select a role'),
         cohort:
-        yup
-            .string()
-            .required('You must enter your Cohort')
+            yup
+                .string()
+                .required('You must enter your Cohort')
     })
 
     /******************************* STATES *******************************/
@@ -74,16 +74,44 @@ const Register = props =>{
     const [submitDisabled, setSubmitDisabled] = useState(true)
 
     /***************************** CALLBACKS *****************************/
-    
+
     //Update formValues when the input values change
     const onInputChange = e => {
         const name = e.target.name
         const value = e.target.value
 
+        //Compare input to validation
+        yup
+            .reach(formSchema, name)
+            .validate(value)
+            .then(valid => {
+                //Clear the errors if the value is passes the test
+                setFormErrors({
+                    ...formErrors, [name]: '',
+                })
+            })
+            .catch(err => {
+                //Set our error message into the formErrors if it doesn't pass the test
+                setFormErrors({
+                    ...formErrors, [name]: err.errors[0],
+                })
+            })
+
+        //Set form values into state
         setFormValues({
             ...formValues, [name]: value
         })
     }
+
+    //Enable the Submit button if the Form is filled in correctly
+    useEffect(() => {
+        formSchema
+            .isValid(formValues)
+            .then(valid => {
+                setSubmitDisabled(!valid)
+            })
+
+    }, [formValues])
 
     //Submits the Registration Form data to the server
     const onSubmit = e => {
@@ -94,7 +122,7 @@ const Register = props =>{
     }
 
     /***************************** JSX *****************************/
-    return(
+    return (
         <form onSubmit={onSubmit}>
 
             {/* Text input for First Name */}
@@ -106,6 +134,7 @@ const Register = props =>{
                     value={formValues.fname}
                     onChange={onInputChange}
                 />
+                {formErrors.fname.length > 3 ? (<p className="error">{formErrors.fname}</p>) : null}
             </label>
 
             {/* Text input for Last Name */}
@@ -117,6 +146,7 @@ const Register = props =>{
                     value={formValues.lname}
                     onChange={onInputChange}
                 />
+                {formErrors.lname.length > 3 ? (<p className="error">{formErrors.lname}</p>) : null}
             </label>
 
             {/* Text input for Username */}
@@ -128,6 +158,7 @@ const Register = props =>{
                     value={formValues.username}
                     onChange={onInputChange}
                 />
+                {formErrors.username.length > 0 ? (<p className="error">{formErrors.username}</p>) : null}
             </label>
 
             {/* Text input for Password */}
@@ -139,6 +170,7 @@ const Register = props =>{
                     value={formValues.password}
                     onChange={onInputChange}
                 />
+                {formErrors.password.length > 8 ? (<p className="error">{formErrors.password}</p>) : null}
             </label>
 
             {/* Text input for Email */}
@@ -150,6 +182,7 @@ const Register = props =>{
                     value={formValues.email}
                     onChange={onInputChange}
                 />
+                {formErrors.email.length > 0 ? (<p className="error">{formErrors.email}</p>) : null}
             </label>
 
             {/* Student/Teacher Dropdown */}
@@ -157,12 +190,14 @@ const Register = props =>{
                 <select
                     id="role"
                     name="role"
-                    onChange={onInputChange}   
+                    value={formValues.role}
+                    onChange={onInputChange}
                 >
                     <option value="">-- Select --</option>
                     <option value="student">Student</option>
                     <option value="teacher">Teacher</option>
                 </select>
+                {formErrors.role.length > 0 ? (<p className="error">{formErrors.role}</p>) : null}
             </label>
 
             {/* Text input for Cohort */}
@@ -174,6 +209,7 @@ const Register = props =>{
                     value={formValues.cohort}
                     onChange={onInputChange}
                 />
+                {formErrors.cohort.length > 0 ? (<p className="error">{formErrors.cohort}</p>) : null}
             </label>
 
             {/* Submit Button */}
