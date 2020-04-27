@@ -52,6 +52,7 @@ const Login = () => {
       .post('https://bw-dev-desk.herokuapp.com/api/login', user)
       .then(res => {
         console.log(res);
+        localStorage.setItem("token", JSON.stringify(res.data.token))
       })
       .catch(err => console.log(err))
       
