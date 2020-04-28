@@ -15,7 +15,8 @@ const Ticket = props => {
     //Assigns or Returns tickets to the Queue
     const clickHandler = e => {
         e.preventDefault();
-        let id = JSON.parse(localStorage.getItem('id'));
+        const id = JSON.parse(localStorage.getItem('id'));
+
         if(data.is_assigned){
             axiosWithAuth().put(`/api/tickets/${data.id}`, { ...data, is_assigned: !data.is_assigned, assigned_to: 0})
             .then(res => {
