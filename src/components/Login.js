@@ -84,7 +84,7 @@ const Login = ({ setLoggedIn }) => {
         }
       })
       .catch(err => console.log(err))
-  }, [userName])
+  }, [userName, push, setLoggedIn])
 
   const handleChange = (e) => {
     e.persist();

@@ -49,7 +49,7 @@ const Teacher = props => {
   /**************************** JSX ****************************/
   return (
     <>
-      <div>
+      <div className="container">
         <h2>Ticket Queue</h2>
         <div className="queue">
           {
@@ -68,7 +68,7 @@ const Teacher = props => {
         </div>
       </div>
 
-      <div>
+      <div className="container">
         <h2>My Tickets</h2>
         <div className="queue">
           {
