@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -13,11 +13,15 @@ import Nav from './components/Nav';
 import './App.css';
 
 function App() {
+const [ loggedIn, setLoggedIn ] = useState(false);
+
   return (
     <Router>
       <div className="App">
-        <Nav />
-        <Route exact path="/" component={Login} />
+        <Nav loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
+        <Route exact path="/">
+          <Login setLoggedIn={setLoggedIn} />
+        </Route>
         <Route exact path="/register" component={Register} />
         <ProtectedRoute exact path="/student" component={Student} />
         <ProtectedRoute exact path="/teacher" component={Teacher} />

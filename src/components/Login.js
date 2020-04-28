@@ -10,7 +10,7 @@ const schema = yup.object().shape({
 });
 
 
-const Login = () => {
+const Login = ({ setLoggedIn }) => {
   const [ user, setUser ] = useState({ username: '', password: '' });
   const [buttonOff, setButtonOff] = useState(true);
   const { push } = useHistory();
@@ -76,6 +76,7 @@ const Login = () => {
         localStorage.setItem("is_admin", JSON.stringify(is_admin));
         localStorage.setItem("id", JSON.stringify(id));
         setUserName();
+        setLoggedIn(true);
         if(is_admin){
           push("/teacher")
         }else{
