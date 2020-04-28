@@ -6,11 +6,12 @@ const Nav = () => {
   const logout = () => {
     localStorage.removeItem('id');
     localStorage.removeItem('token');
+    localStorage.removeItem('is_admin');
   }
 
   return (
     <nav>
-      <Link onClick={logout} to="/">{(JSON.parse(localStorage.getItem('id'))) ? 'Log out' : 'Log In'}</Link>
+      <Link onClick={logout} to="/">toggleLoggedIn</Link>
     </nav>
   );
 }
