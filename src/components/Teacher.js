@@ -43,7 +43,7 @@ const Teacher = props => {
         console.log('ERROR: ', err)
       })
 
-  }, [])
+  }, [ticketQueue])
 
 
   /**************************** JSX ****************************/
@@ -80,6 +80,8 @@ const Teacher = props => {
                   data={ticket} 
                   ticketQueue={ticketQueue}
                   setTicketQueue={setTicketQueue}
+                  myTickets={myTickets}
+                  setMyTickets={setMyTickets}
                   
                 />) //creates a ticket in the helpers list
           }
