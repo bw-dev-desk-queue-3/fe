@@ -32,7 +32,7 @@ const Student = () => {
 
   return (
     <div>
-      <CreateTicket />
+      <CreateTicket tickets={tickets} setTickets={setTickets} userTickets={userTickets} setUserTickets={setUserTickets} />
       {tickets
         .map(ticket => {
           return <Ticket key={ticket.id} data={ticket} />;
