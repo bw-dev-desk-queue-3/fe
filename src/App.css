@@ -17,12 +17,12 @@ nav {
   width: 100%;
   background-color: #2F2B4A;
   padding: 2%;
-  color: white;
+  color: #fff;
   margin-bottom: 5%;
 }
 
 nav a {
-  color: white;
+  color: whit#fff;
   text-decoration: none;
 }
 
@@ -41,19 +41,19 @@ nav a {
 .register input, .register textarea,
 .create-ticket input, .create-ticket textarea {
   width: 100%;
-  border: 1px solid black;
+  border: 1px solid #000;
 }
 
 .register select {
   width: 25%;
-  border: 1px solid black;
+  border: 1px solid #000;
 }
 
 .login button,
 .register button,
 .create-ticket button,
 .ticket-heading button {
-  border: 1px solid grey;
+  border: 1px solid #808080;
   border-radius: 10px;
   padding: 1%;
   width: 25%;
@@ -61,7 +61,7 @@ nav a {
 }
 
 .error {
-  color: red;
+  color: #dc143c;
 }
 
 .textarea {
@@ -80,17 +80,23 @@ nav a {
   flex-flow: row wrap;
   width: 30%;
   margin: 2% 1%;
-  border: 1px solid black;
+  border: 1px solid #000;
   padding: 2%;
   box-shadow: 3px 3px 20px #404040;
 }
 
 .ticket h2 {
   font-size: 1.8rem;
+  color: #dc143c;
+}
+
+.ticket h3 {
+  font-style: italic;
 }
 
 .ticket h3,
 .ticket-heading button {
+  margin: 0 1.5%;
   font-size: 1.2rem;
 }
 
