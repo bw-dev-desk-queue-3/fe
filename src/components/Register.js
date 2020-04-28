@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useHistory } from "react-router-dom"
 import * as yup from 'yup'
 import axios from "axios"
 
@@ -40,6 +41,8 @@ const formSchema = yup.object().shape({
 })
 
 const Register = props => {
+
+    const { push } = useHistory()
 
     //Initial formValues
     const initFormValues = {
@@ -129,6 +132,9 @@ const Register = props => {
 
         //Reset the form
         setFormValues(initFormValues)
+
+        //Redirect to login
+        push('/')
     }
 
     /***************************** JSX *****************************/
