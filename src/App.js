@@ -1,4 +1,7 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
+
+import ProtectedRoute from "./components/ProtectedRoute";
 import Login from './components/Login';
 import Register from './components/Register';
 import CreateTicket from './components/CreateTicket';
@@ -8,12 +11,12 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <Login />
-      <Register />
-      <CreateTicket />
-      <Ticket />
-    </div>
+    <Router>
+      <div className="App">
+        <Route exact path="/" component={Login} />
+        <Route exact path="/register" component={Register} />
+      </div>
+    </Router>
   );
 }
 
