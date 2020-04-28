@@ -71,9 +71,18 @@ const Login = () => {
       .then(res => {
         console.log({res});
         const user = res.data.filter(user => user.username === userName);
+        console.log(user);
+        const is_admin = user[0].is_admin;
+        console.log({is_admin})
         const id = user[0].id;
+        localStorage.setItem("is_admin", JSON.stringify(is_admin));
         localStorage.setItem("id", JSON.stringify(id));
         setUserName();
+        if(is_admin){
+          push("/teacher")
+        }else{
+          push("/student")
+        }
       })
       .catch(err => console.log(err))
   }, [userName])
