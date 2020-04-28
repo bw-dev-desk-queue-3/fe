@@ -1,7 +1,6 @@
 import React from 'react'
 import { axiosWithAuth } from '../utils/axiosWithAuth'
 
-const id = JSON.parse(localStorage.getItem('id'));
 
 const Ticket = props => {
     const {
@@ -16,6 +15,7 @@ const Ticket = props => {
     //Assigns or Returns tickets to the Queue
     const clickHandler = e => {
         e.preventDefault();
+        const id = JSON.parse(localStorage.getItem('id'));
 
         if(data.is_assigned){
             axiosWithAuth().put(`/api/tickets/${data.id}`, { ...data, is_assigned: !data.is_assigned, assigned_to: 0})

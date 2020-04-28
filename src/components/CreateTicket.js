@@ -110,7 +110,7 @@ const CreateTicket = ({ tickets, setTickets, userTickets, setUserTickets }) => {
         <textarea
           className="textarea"
           name="category"
-          value={newTicket.tried}
+          value={newTicket.category}
           onChange={handleChange}
          />
       </label>
