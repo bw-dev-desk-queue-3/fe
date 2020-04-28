@@ -1,20 +1,26 @@
 import React from 'react'
 
 const Ticket = props => {
+    const {
+        title,
+        category,
+        description,
+        is_assigned 
+    } = props
 
     return(
         <div className="container">
             <div className="ticket-heading">
                 <div>
-                    <h2>Title</h2>
-                    <h3>Category</h3>
+                    <h2>{title}</h2>
+                    <h3>{category}</h3>
                 </div>
 
-                <button>Assign/Return</button>
+                <button>{is_assigned ? 'Return' : 'Assign'}</button>
             </div>
 
             <div className="ticket-body">
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non et harum praesentium, sint nihil tempora quis minus voluptatem? Recusandae ex dolorum aliquid neque dignissimos et facilis voluptatibus nesciunt accusamus excepturi?</p>
+                <p>{description}</p>
             </div>
 
         </div>
