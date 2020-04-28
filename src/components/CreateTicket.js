@@ -15,7 +15,7 @@ const CreateTicket = () => {
     title: '',
     description: '',
     category: '',
-    user_id: ''
+    user_id: id
   });
 
   const [errors, setErrors] = useState({
@@ -28,7 +28,7 @@ const CreateTicket = () => {
 
   const handleChange = (e) => {
     e.persist();
-    setNewTicket({ ...newTicket, [e.target.name]: e.target.value, user_id: id });
+    setNewTicket({ ...newTicket, [e.target.name]: e.target.value });
     validate(e);
   }
 
