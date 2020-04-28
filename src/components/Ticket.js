@@ -6,10 +6,10 @@ const Ticket = props => {
         category,
         description,
         is_assigned 
-    } = props
+    } = props.data
 
     return(
-        <div className="container">
+        <div className="ticket">
             <div className="ticket-heading">
                 <div>
                     <h2>{title}</h2>
