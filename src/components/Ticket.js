@@ -45,15 +45,19 @@ const Ticket = props => {
                 })
             }
 
+    }
 
-            // axiosWithAuth().delete(`/api/tickets/${data.id}`)
-            // .then(res => {
-            //     console.log("Delete", res )
-            //     setTicketQueue(ticketQueue.filter(ticket => ticket.key !== data.id))
-            // })
-            // .catch(err => {
-            //     console.log({ err })
-            // })
+    const handleDelete = e => {
+        e.preventDefault();
+
+        axiosWithAuth().delete(`/api/tickets/${data.id}`)
+        .then(res => {
+            console.log("Delete", res )
+            setTicketQueue(ticketQueue.filter(ticket => ticket.key !== data.id))
+        })
+        .catch(err => {
+            console.log({ err })
+        })
     }
 
     return (
@@ -79,7 +83,9 @@ const Ticket = props => {
                 }
                 {
                     isAdmin && data.is_assigned ?
-                        <button>
+                        <button
+                            onClick={handleDelete}
+                        >
                             Resolve
                         </button>
 
