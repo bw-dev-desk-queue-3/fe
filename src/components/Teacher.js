@@ -6,6 +6,9 @@ import Ticket from './Ticket'
 
 const Teacher = props => {
 
+    //Get the logged in user's id
+    const userId = JSON.parse(localStorage.getItem('id'))
+
   /************************* STATES *************************/
 
   //Stores all unassigned tickets available in the queue
@@ -25,6 +28,7 @@ const Teacher = props => {
       })
       .catch(err => {
         console.log('ERROR: ', err)
+        setTicketQueue(null)
       })
 
   }, [])
@@ -32,18 +36,16 @@ const Teacher = props => {
   //Loads in the assigned tickets for the user
   useEffect(() => {
 
-    //Get the logged in user's id
-    const userId = JSON.parse(localStorage.getItem('id'))
-
     axiosWithAuth().get(`https://bw-dev-desk.herokuapp.com/api/tickets/staff/${userId}`)
       .then(res => {
         setMyTickets(res.data)
       })
       .catch(err => {
         console.log('ERROR: ', err)
+        setMyTickets(null)
       })
 
-  }, [ticketQueue])
+  }, [ticketQueue, userId])
 
 
   /**************************** JSX ****************************/
