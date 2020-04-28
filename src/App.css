@@ -52,11 +52,18 @@ html {
   min-height: 4rem;
 }
 
+.queue {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  padding: 2%;
+}
+
 .ticket {
   display: flex;
   flex-flow: row wrap;
   width: 30%;
-  margin: 2% auto;
+  margin: 2% 1%;
   border: 1px solid black;
   padding: 2%;
   box-shadow: 3px 3px 20px #404040;

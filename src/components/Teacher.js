@@ -29,7 +29,7 @@ const Teacher = props => {
   return (
     <div>
       <h2>Ticket Queue</h2>
-      <div>
+      <div className="queue">
         {
           ticketQueue && 
           ticketQueue
