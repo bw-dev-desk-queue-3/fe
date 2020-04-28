@@ -1,10 +1,15 @@
 import React, { useState } from 'react'
+import { axiosWithAuth } from '../utils/axiosWithAuth'
+
+const id = JSON.parse(localStorage.getItem('id'));
 
 const Ticket = props => {
     const {
         data,
         ticketQueue,
-        setTicketQueue
+        setTicketQueue,
+        myTickets, 
+        setMyTickets
     } = props
 
     //Checks if user has permission to resolve tickets
@@ -12,7 +17,43 @@ const Ticket = props => {
 
     //Assigns or Returns tickets to the Queue
     const clickHandler = e => {
-        
+        e.preventDefault();
+
+        if(data.is_assigned){
+            axiosWithAuth().put(`/api/tickets/${data.id}`, { ...data, is_assigned: !data.is_assigned, assigned_to: 0})
+            .then(res => {
+                console.log("Update", res )
+                setTicketQueue(ticketQueue.map(ticket => {
+                    return ticket.id === data.id ? res.data : ticket
+                }))
+
+            })
+            .catch(err => {
+                console.log({ err })
+            }) 
+        }else{
+            axiosWithAuth().put(`/api/tickets/${data.id}`, { ...data, is_assigned: !data.is_assigned, assigned_to: id})
+                .then(res => {
+                    console.log("Update", res )
+                    setTicketQueue(ticketQueue.map(ticket => {
+                        return ticket.id === data.id ? res.data : ticket
+                    }))
+    
+                })
+                .catch(err => {
+                    console.log({ err })
+                })
+            }
+
+
+            // axiosWithAuth().delete(`/api/tickets/${data.id}`)
+            // .then(res => {
+            //     console.log("Delete", res )
+            //     setTicketQueue(ticketQueue.filter(ticket => ticket.key !== data.id))
+            // })
+            // .catch(err => {
+            //     console.log({ err })
+            // })
     }
 
     return (
