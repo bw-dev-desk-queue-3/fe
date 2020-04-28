@@ -14,9 +14,10 @@ const Teacher = props => {
   
   /************************* CALLBACKS *************************/
   useEffect(() => {
-    axiosWithAuth.get(`https://bw-dev-desk.herokuapp.com/api/tickets`)
+    axiosWithAuth().get(`https://bw-dev-desk.herokuapp.com/api/tickets`)
       .then(res => {
-        console,log({res})
+        console.log({res})
+        setTicketQueue(res.data)
       })
       .catch(err => {
         console.log('ERROR: ', err)
@@ -30,7 +31,10 @@ const Teacher = props => {
       <h2>Ticket Queue</h2>
       <div>
         {
-          ticketQueue && ticketQueue.map(ticket => <Ticket data={ticket}/>)
+          ticketQueue && 
+          ticketQueue
+            .filter(ticket => !ticket.is_assigned) //Remove assigned tickets from the data
+            .map(ticket => <Ticket key={ticket.id} data={ticket}/>) //create a ticket in the queue for each unassigned ticket
         }
       </div>
     </div>
