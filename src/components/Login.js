@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import axios from 'axios';
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 import * as yup from 'yup';
 
 const schema = yup.object().shape({
@@ -13,6 +14,8 @@ const Login = () => {
   const [ user, setUser ] = useState({ username: '', password: '' });
   const [buttonOff, setButtonOff] = useState(true);
   const { push } = useHistory();
+  const [ userName, setUserName ] = useState();
+
 
   const [errors, setErrors] = useState({
     username: '',
@@ -54,11 +57,26 @@ const Login = () => {
       .then(res => {
         console.log(res);
         localStorage.setItem("token", JSON.stringify(res.data.token))
+        setUserName(user.username);
       })
-      .catch(err => console.log(err))
-      
+      .catch(err => console.log(err));
+
     setUser({ username: '', password: '' });
   };
+
+  useEffect(() => {
+    if(!userName) return;
+    axiosWithAuth()
+      .get('https://bw-dev-desk.herokuapp.com/api/users')
+      .then(res => {
+        console.log({res});
+        const user = res.data.filter(user => user.username === userName);
+        const id = user[0].id;
+        localStorage.setItem("id", JSON.stringify(id));
+        setUserName();
+      })
+      .catch(err => console.log(err))
+  }, [userName])
 
   const handleChange = (e) => {
     e.persist();
