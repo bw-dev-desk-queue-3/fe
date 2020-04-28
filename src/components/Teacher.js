@@ -6,8 +6,6 @@ import Ticket from './Ticket'
 
 const Teacher = props => {
 
-  const userId = JSON.parse(localStorage.getItem('id'))
-
   /************************* STATES *************************/
 
   //Stores all unassigned tickets available in the queue
@@ -18,6 +16,14 @@ const Teacher = props => {
 
 
   /************************* CALLBACKS *************************/
+
+  //Assigns or Returns tickets to the Queue
+  const clickHandler = e => {
+    const value = e.target.value
+
+    
+
+}
   
   //Loads in the ticket queue
   useEffect(() => {
@@ -29,10 +35,14 @@ const Teacher = props => {
         console.log('ERROR: ', err)
       })
 
-  }, [])
+  }, [ticketQueue])
 
   //Loads in the assigned tickets for the user
   useEffect(() => {
+
+    //Get the logged in user's id
+    const userId = JSON.parse(localStorage.getItem('id'))
+
     axiosWithAuth().get(`https://bw-dev-desk.herokuapp.com/api/tickets/staff/${userId}`)
       .then(res => {
         setMyTickets(res.data)
@@ -41,7 +51,7 @@ const Teacher = props => {
         console.log('ERROR: ', err)
       })
 
-  }, [])
+  }, [ticketQueue])
 
 
   /**************************** JSX ****************************/
@@ -54,7 +64,7 @@ const Teacher = props => {
             ticketQueue &&
             ticketQueue
               .filter(ticket => !ticket.is_assigned) //Remove assigned tickets from the data
-              .map(ticket => <Ticket key={ticket.id} data={ticket} />) //create a ticket in the queue for each unassigned ticket
+              .map(ticket => <Ticket key={ticket.id} data={ticket} onClick={clickHandler} />) //create a ticket in the queue for each unassigned ticket
           }
         </div>
       </div>
@@ -65,8 +75,7 @@ const Teacher = props => {
           {
             myTickets &&
             myTickets
-              .filter(ticket => ticket.user_id === userId)
-              .map(ticket => <Ticket key={ticket.id} data={ticket} />)
+              .map(ticket => <Ticket key={ticket.id} data={ticket} onClick={clickHandler} />) //creates a ticket in the helpers list
           }
         </div>
       </div>
