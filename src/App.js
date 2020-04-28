@@ -4,8 +4,6 @@ import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Login from './components/Login';
 import Register from './components/Register';
-import CreateTicket from './components/CreateTicket';
-import Ticket from './components/Ticket'
 
 import './App.css';
 

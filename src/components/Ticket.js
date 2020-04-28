@@ -6,7 +6,7 @@ const Ticket = props => {
         category,
         description,
         is_assigned 
-    } = props
+    } = props.data
 
     return(
         <div className="container">

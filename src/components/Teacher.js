@@ -1,11 +1,40 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react'
+import { axiosWithAuth } from '../utils/axiosWithAuth'
 
-const Teacher = () => {
+//Components
+import Ticket from './Ticket'
+
+const Teacher = props => {
+
+  /************************* STATES *************************/
+
+  const [ticketQueue, setTicketQueue] = useState(null)
+
+  
+  
+  /************************* CALLBACKS *************************/
+  useEffect(() => {
+    axiosWithAuth.get(`https://bw-dev-desk.herokuapp.com/api/tickets`)
+      .then(res => {
+        console,log({res})
+      })
+      .catch(err => {
+        console.log('ERROR: ', err)
+      })
+  }, [])
+
+
+  /**************************** JSX ****************************/
   return (
     <div>
-      Teacher
+      <h2>Ticket Queue</h2>
+      <div>
+        {
+          ticketQueue && ticketQueue.map(ticket => <Ticket data={ticket}/>)
+        }
+      </div>
     </div>
-  );
+  )
 }
 
-export default Teacher;
+export default Teacher
