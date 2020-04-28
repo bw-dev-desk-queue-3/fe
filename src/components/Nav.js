@@ -8,7 +8,8 @@ const Nav = ({ loggedIn, setLoggedIn }) => {
     localStorage.removeItem('id');
     localStorage.removeItem('token');
     localStorage.removeItem('is_admin');
-    setLoggedIn(false);
+    localStorage.removeItem('loggedIn');
+    setLoggedIn(null);
   }
 
   // const deleteCard = e => {
