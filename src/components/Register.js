@@ -142,7 +142,7 @@ const Register = props => {
                 <input
                     name="first_name"
                     type="text"
-                    value={formValues.fname}
+                    value={formValues.first_name}
                     onChange={onInputChange}
                 />
                 {formErrors.first_name.length > 3 ? (<p className="error">{formErrors.first_name}</p>) : null}
@@ -153,7 +153,7 @@ const Register = props => {
                 <input
                     name="last_name"
                     type="text"
-                    value={formValues.lname}
+                    value={formValues.last_name}
                     onChange={onInputChange}
                 />
                 {formErrors.last_name.length > 3 ? (<p className="error">{formErrors.last_name}</p>) : null}
@@ -196,7 +196,7 @@ const Register = props => {
             <label>Role<br></br>
                 <select
                     name="is_admin"
-                    value={formValues.role}
+                    value={formValues.is_admin}
                     onChange={onInputChange}
                 >
                     <option value="">-- Select --</option>
