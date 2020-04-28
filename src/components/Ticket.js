@@ -33,6 +33,18 @@ const Ticket = props => {
                         </button>
 
                         : null
+
+                        
+                }
+                {
+                    isAdmin && data.is_assigned ?
+                        <button>
+                            Resolve
+                        </button>
+
+                        : null
+
+                        
                 }
             </div>
 
