@@ -31,18 +31,25 @@ const Student = () => {
   }, [])
 
   return (
-    <div>
+    <>
+      <h2>Create a new ticket</h2>
       <CreateTicket tickets={tickets} setTickets={setTickets} userTickets={userTickets} setUserTickets={setUserTickets} />
-      {tickets
-        .map(ticket => {
-          return <Ticket key={ticket.id} data={ticket} />;
-      })}
+      <h2>All Tickets</h2>
+      <div className="queue">
+        {tickets
+          .map(ticket => {
+            return <Ticket key={ticket.id} data={ticket} />;
+          })}
+      </div>
+      
       <h2>Your Tickets</h2>
-      {userTickets
-        .map(ticket => {
-          return <Ticket key={ticket.id} data={ticket} />;
-        })}
-    </div>
+      <div className="queue">
+        {userTickets
+          .map(ticket => {
+            return <Ticket key={ticket.id} data={ticket} />;
+          })}
+      </div>
+    </>
   );
 }
 
