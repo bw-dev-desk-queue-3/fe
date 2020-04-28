@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from "react-router-dom";
 import axios from 'axios';
 import * as yup from 'yup';
 
@@ -11,7 +12,7 @@ const schema = yup.object().shape({
 const Login = () => {
   const [ user, setUser ] = useState({ username: '', password: '' });
   const [buttonOff, setButtonOff] = useState(true);
-
+  const { push } = useHistory();
 
   const [errors, setErrors] = useState({
     username: '',
@@ -89,7 +90,7 @@ const Login = () => {
       </label>
       {errors.password && <p className="error">{errors.password}</p>}
       <button disabled={buttonOff}>Login</button>
-      <button>Sign Up!</button>
+      <button onClick={() => {push("/register")}}>Sign Up!</button>
     </form>
   );
 }
