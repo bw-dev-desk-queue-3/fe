@@ -87,7 +87,7 @@ const CreateTicket = () => {
       </label>
       {errors.description && <p className="error">{errors.description}</p>}
       <label>
-        What I have tried:
+        Category:
         <textarea
           className="textarea"
           name="category"
