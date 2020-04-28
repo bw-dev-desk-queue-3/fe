@@ -31,7 +31,8 @@
 
 .login button,
 .register button,
-.create-ticket button {
+.create-ticket button,
+.ticket-heading button {
   border: 1px solid grey;
   border-radius: 10px;
   padding: 1%;
@@ -45,4 +46,28 @@
 
 .textarea {
   min-height: 4rem;
+}
+
+.container {
+  display: flex;
+  flex-flow: row wrap;
+  width: 30%;
+  margin: 2% auto;
+  border: 1px solid black;
+  padding: 2%;
+  box-shadow: 3px 3px 20px #404040;
+}
+
+.ticket-heading {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ticket-heading div {
+  width: 60%;
+}
+
+.ticket-body {
+  margin: 3% 0;
 }
