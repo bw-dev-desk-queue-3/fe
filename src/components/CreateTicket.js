@@ -10,7 +10,7 @@ const schema = yup.object().shape({
 
 const id = JSON.parse(localStorage.getItem('id'));
 
-const CreateTicket = () => {
+const CreateTicket = ({ tickets, setTickets, userTickets, setUserTickets }) => {
   const [ newTicket, setNewTicket ] = useState({
     title: '',
     description: '',
@@ -37,6 +37,14 @@ const CreateTicket = () => {
     axiosWithAuth().post(`/api/tickets/`, newTicket)
       .then(res => {
         console.log({ res })
+        setTickets([
+          ...tickets,
+          res.data
+        ])
+        setUserTickets([
+          ...userTickets,
+          res.data
+        ])
       })
       .catch(err => {
         console.log({ err })
