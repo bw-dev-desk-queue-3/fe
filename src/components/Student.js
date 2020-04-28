@@ -5,8 +5,8 @@ import CreateTicket from './CreateTicket';
 
 
 const Student = () => {
-  const [ tickets, setTickets ] = useState([]);
-  const [ userTickets, setUserTickets ] = useState([]);
+  const [tickets, setTickets] = useState([]);
+  const [userTickets, setUserTickets] = useState([]);
 
   useEffect(() => {
     axiosWithAuth()
@@ -32,22 +32,26 @@ const Student = () => {
 
   return (
     <>
-      <h2>Create a new ticket</h2>
-      <CreateTicket tickets={tickets} setTickets={setTickets} userTickets={userTickets} setUserTickets={setUserTickets} />
-      <h2>All Tickets</h2>
-      <div className="queue">
-        {tickets
-          .map(ticket => {
-            return <Ticket key={ticket.id} data={ticket} />;
-          })}
+      <div className="container">
+        <h2>Create a new ticket</h2>
+        <CreateTicket tickets={tickets} setTickets={setTickets} userTickets={userTickets} setUserTickets={setUserTickets} />
+        <h2>All Tickets</h2>
+        <div className="queue">
+          {tickets
+            .map(ticket => {
+              return <Ticket key={ticket.id} data={ticket} />;
+            })}
+        </div>
       </div>
-      
-      <h2>Your Tickets</h2>
-      <div className="queue">
-        {userTickets
-          .map(ticket => {
-            return <Ticket key={ticket.id} data={ticket} />;
-          })}
+
+      <div className="container">
+        <h2>Your Tickets</h2>
+        <div className="queue">
+          {userTickets
+            .map(ticket => {
+              return <Ticket key={ticket.id} data={ticket} />;
+            })}
+        </div>
       </div>
     </>
   );
