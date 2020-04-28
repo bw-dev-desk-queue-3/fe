@@ -11,17 +11,17 @@ const Nav = ({ loggedIn, setLoggedIn }) => {
     setLoggedIn(false);
   }
 
-  const deleteCard = e => {
+/*   const deleteCard = e => {
     e.preventDefault();
 
-  //   axiosWithAuth().delete(`/api/tickets/2`)
-  //     .then(res => {
-  //       console.log("Delete", res)
-  //     })
-  //     .catch(err => {
-  //       console.log({ err })
-  //     })
-  }
+     axiosWithAuth().delete(`/api/tickets/2`)
+       .then(res => {
+         console.log("Delete", res)
+       })
+       .catch(err => {
+         console.log({ err })
+       })
+  } */
 
   return (
     <nav>
