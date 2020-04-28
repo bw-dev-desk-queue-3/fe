@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 import * as yup from 'yup';
 
 const schema = yup.object().shape({
@@ -31,6 +31,13 @@ const CreateTicket = () => {
 
   const submitTicket = (e) => {
     e.preventDefault();
+    axiosWithAuth().post(`/api/tickets/`, newTicket)
+      .then(res => {
+        console.log({ res })
+      })
+      .catch(err => {
+        console.log({ err })
+      })
     setNewTicket({
       title: '',
       description: '',
