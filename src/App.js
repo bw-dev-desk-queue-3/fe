@@ -13,7 +13,7 @@ import Nav from './components/Nav';
 import './App.css';
 
 function App() {
-const [ loggedIn, setLoggedIn ] = useState(false);
+const [ loggedIn, setLoggedIn ] = useState(localStorage.getItem("loggedIn"));
 
   return (
     <Router>

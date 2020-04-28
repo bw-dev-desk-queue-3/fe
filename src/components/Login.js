@@ -76,7 +76,8 @@ const Login = ({ setLoggedIn }) => {
         localStorage.setItem("is_admin", JSON.stringify(is_admin));
         localStorage.setItem("id", JSON.stringify(id));
         setUserName();
-        setLoggedIn(true);
+        localStorage.setItem("loggedIn", "true")
+        setLoggedIn(localStorage.getItem("loggedIn"));
         if(is_admin){
           push("/teacher")
         }else{

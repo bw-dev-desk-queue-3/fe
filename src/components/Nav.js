@@ -8,20 +8,21 @@ const Nav = ({ loggedIn, setLoggedIn }) => {
     localStorage.removeItem('id');
     localStorage.removeItem('token');
     localStorage.removeItem('is_admin');
-    setLoggedIn(false);
+    localStorage.removeItem('loggedIn');
+    setLoggedIn(null);
   }
 
-/*   const deleteCard = e => {
-    e.preventDefault();
+  // const deleteCard = e => {
+  //   e.preventDefault();
 
-     axiosWithAuth().delete(`/api/tickets/2`)
-       .then(res => {
-         console.log("Delete", res)
-       })
-       .catch(err => {
-         console.log({ err })
-       })
-  } */
+  //   axiosWithAuth().delete(`/api/tickets/2`)
+  //     .then(res => {
+  //       console.log("Delete", res)
+  //     })
+  //     .catch(err => {
+  //       console.log({ err })
+  //     })
+  // }
 
   return (
     <nav>
