@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { axiosWithAuth } from '../utils/axiosWithAuth'
 
 const id = JSON.parse(localStorage.getItem('id'));
@@ -7,9 +7,7 @@ const Ticket = props => {
     const {
         data,
         ticketQueue,
-        setTicketQueue,
-        myTickets, 
-        setMyTickets
+        setTicketQueue
     } = props
 
     //Checks if user has permission to resolve tickets
