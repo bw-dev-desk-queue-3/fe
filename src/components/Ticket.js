@@ -1,26 +1,43 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const Ticket = props => {
     const {
-        title,
-        category,
-        description,
-        is_assigned 
-    } = props.data
+        data,
+        ticketQueue,
+        setTicketQueue
+    } = props
 
-    return(
-        <div className="ticket">
+    //Checks if user has permission to resolve tickets
+    const isAdmin = JSON.parse(localStorage.getItem('is_admin'))
+
+    //Assigns or Returns tickets to the Queue
+    const clickHandler = e => {
+        
+    }
+
+    return (
+        <div id={data.id} className="ticket">
             <div className="ticket-heading">
                 <div>
-                    <h2>{title}</h2>
-                    <h3>{category}</h3>
+                    <h2>{data.title}</h2>
+                    <h3>{data.category}</h3>
                 </div>
 
-                <button>{is_assigned ? 'Return' : 'Assign'}</button>
+                {
+                    isAdmin ?
+                        <button
+                            value={data.is_assigned}
+                            onClick={clickHandler}>
+                            {/* Text of Btn wil be either Return or Assign */}
+                            {data.is_assigned ? 'Return' : 'Assign'}
+                        </button>
+
+                        : null
+                }
             </div>
 
             <div className="ticket-body">
-                <p>{description}</p>
+                <p>{data.description}</p>
             </div>
 
         </div>
