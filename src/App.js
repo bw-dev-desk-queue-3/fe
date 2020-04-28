@@ -4,8 +4,10 @@ import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Login from './components/Login';
 import Register from './components/Register';
-import CreateTicket from './components/CreateTicket';
-import Ticket from './components/Ticket'
+import Student from "./components/Student";
+import Teacher from "./components/Teacher";
+import CreateTicket from "./components/CreateTicket";
+
 
 import './App.css';
 
@@ -15,6 +17,9 @@ function App() {
       <div className="App">
         <Route exact path="/" component={Login} />
         <Route exact path="/register" component={Register} />
+        <ProtectedRoute exact path="/student" component={Student} />
+        <ProtectedRoute exact path="/teacher" component={Teacher} />
+        <ProtectedRoute exact path="/create" component={CreateTicket} />
       </div>
     </Router>
   );

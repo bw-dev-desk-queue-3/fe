@@ -6,6 +6,6 @@ export const axiosWithAuth = () => {
     headers: {
       Authorization: token
     },
-    baseURL: 'https://bw-dev-desk.herokuapp.com/'
+    baseURL: 'https://bw-dev-desk.herokuapp.com'
   });
 };
