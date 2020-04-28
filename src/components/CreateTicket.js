@@ -5,20 +5,20 @@ import * as yup from 'yup';
 const schema = yup.object().shape({
   title: yup.string().required('Feild is required'),
   description: yup.string().required('Feild is required'),
-  tried: yup.string().required('Feild is required')
+  category: yup.string().required('Feild is required')
 });
 
 const CreateTicket = () => {
   const [ newTicket, setNewTicket ] = useState({
     title: '',
     description: '',
-    tried: ''
+    category: ''
   });
 
   const [errors, setErrors] = useState({
     title: '',
     description: '',
-    tried: ''
+    category: ''
   })
 
   const [buttonOff, setButtonOff] = useState(true);
@@ -34,7 +34,7 @@ const CreateTicket = () => {
     setNewTicket({
       title: '',
       description: '',
-      tried: ''
+      category: ''
     });
   }
 
@@ -67,38 +67,35 @@ const CreateTicket = () => {
 
   return (
     <form onSubmit={submitTicket} className="create-ticket">
-      <label htmlFor="title">
+      <label>
         Title:
         <input
-          id="title"
           name="title"
           value={newTicket.title}
           onChange={handleChange}
          />
       </label>
       {errors.title && <p className="error">{errors.title}</p>}
-      <label htmlFor="description">
+      <label>
         Description:
         <textarea
           className="textarea"
-          id="description"
           name="description"
           value={newTicket.description}
           onChange={handleChange}
          />
       </label>
       {errors.description && <p className="error">{errors.description}</p>}
-      <label htmlFor="tried">
+      <label>
         What I have tried:
         <textarea
           className="textarea"
-          id="tried"
-          name="tried"
+          name="category"
           value={newTicket.tried}
           onChange={handleChange}
          />
       </label>
-      {errors.tried && <p className="error">{errors.tried}</p>}
+      {errors.category && <p className="error">{errors.category}</p>}
       <button disabled={buttonOff}>Submit</button>
     </form>
   );
