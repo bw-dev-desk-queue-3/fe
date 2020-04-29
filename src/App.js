@@ -14,14 +14,13 @@ import './App.css';
 
 function App() {
 const [ loggedIn, setLoggedIn ] = useState(localStorage.getItem("loggedIn"));
-const [ users, setUsers ] = useState([]);
 
   return (
     <Router>
       <div className="App">
         <Nav loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
         <Route exact path="/">
-          <Login setUsers={setUsers} setLoggedIn={setLoggedIn} />
+          <Login setLoggedIn={setLoggedIn} />
         </Route>
         <Route exact path="/register" component={Register} />
         <ProtectedRoute exact path="/student" component={Student} />
