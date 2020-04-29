@@ -3,9 +3,9 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 import * as yup from 'yup';
 
 const schema = yup.object().shape({
-  title: yup.string().required('Feild is required'),
-  description: yup.string().required('Feild is required'),
-  category: yup.string().required('Feild is required')
+  title: yup.string().required('Field is required'),
+  description: yup.string().required('Field is required'),
+  category: yup.string().required('Field is required')
 });
 
 
