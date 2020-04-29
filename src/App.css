@@ -103,7 +103,7 @@ nav a {
 }
 
 .ticket h2 {
-  font-size: 1.8rem;
+  font-size: 2rem;
   color: #dc143c;
 }
 
@@ -146,7 +146,8 @@ nav a {
 }
 
 .ticket-btns p {
-  font-size: 1.2rem;
+  font-size: 2rem;
+  font-weight: bold;
   text-align: center;
   color: #dc143c;
 }
