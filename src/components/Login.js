@@ -41,6 +41,14 @@ const Login = ({ setLoggedIn }) => {
   }
 
   useEffect(() => {
+    if (localStorage.getItem('token') && localStorage.getItem('is_admin') === "true") {
+      push("/teacher")
+    } else if (localStorage.getItem('token') && localStorage.getItem('is_admin') === "false") {
+      push("/student")
+    }
+  }, [])
+
+  useEffect(() => {
     schema
       .isValid(user)
       .then((valid) => {
