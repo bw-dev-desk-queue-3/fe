@@ -8,9 +8,11 @@ const schema = yup.object().shape({
   category: yup.string().required('Feild is required')
 });
 
-const id = JSON.parse(localStorage.getItem('id'));
+
 
 const CreateTicket = ({ tickets, setTickets, userTickets, setUserTickets }) => {
+  const id = JSON.parse(localStorage.getItem('id'));
+
   const [ newTicket, setNewTicket ] = useState({
     title: '',
     description: '',
