@@ -106,7 +106,7 @@ nav a {
 }
 
 .ticket-heading button {
-  width: 30%;
+  width: 100%;
   margin: 0 1.5%;
   border-radius: 7px;
   padding: 2%;
@@ -135,4 +135,13 @@ nav a {
 
 .ticket-body {
   margin: 3% 0;
+}
+
+.ticket-btns {
+  width: 35%;
+}
+
+.ticket-btns p {
+  font-size: 1.2rem;
+  text-align: center;
 }
