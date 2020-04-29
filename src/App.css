@@ -147,3 +147,18 @@ nav a {
   font-size: 1rem;
   font-weight: bold;
 }
+
+@media only screen and (max-width: 450px) {
+  .ticket {
+    width: 100%;
+  }
+  .ticket > * {
+    padding: 1% 3%;
+  }
+  .ticket button {
+    margin: 3% 0;
+  }
+  .login, .register, .create-ticket {
+    min-width: 80%;
+  }
+}
