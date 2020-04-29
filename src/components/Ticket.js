@@ -10,6 +10,8 @@ const Ticket = props => {
 
     } = props
 
+    const date = new Date(data.created_at).toDateString()
+
     //Checks if user has permission to resolve tickets
     const isAdmin = JSON.parse(localStorage.getItem('is_admin'))
 
@@ -85,10 +87,11 @@ const Ticket = props => {
                     }
                     {/* Ticket Resolved indicator */}
                     {
-                        data.is_resolved ? <p className="error">Resolved</p> : null
+                        data.is_resolved ? <p>Resolved</p> : null
                     }
                     {/* Delete Ticket Button */}
                     {
+                        isAdmin &&
                         data.is_resolved &&
                             !data.is_assigned ?
                             <button
@@ -102,6 +105,11 @@ const Ticket = props => {
 
             <div className="ticket-body">
                 <p>{data.description}</p>
+            </div>
+
+            {/* Ticket Footer displays who created the ticket and the date */}
+            <div className="ticket-footer">
+                <p>{`Submitted by: $user_id.first_name $user_id.last_name on ${date}`}</p>
             </div>
 
         </div>

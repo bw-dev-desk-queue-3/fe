@@ -129,10 +129,6 @@ nav a {
   justify-content: space-between;
 }
 
-.ticket-heading div {
-  width: 60%;
-}
-
 .ticket-body {
   margin: 3% 0;
 }
@@ -144,4 +140,10 @@ nav a {
 .ticket-btns p {
   font-size: 1.2rem;
   text-align: center;
+  color: #dc143c;
+}
+
+.ticket-footer p {
+  font-size: 1.2rem;
+  font-weight: bold;
 }
