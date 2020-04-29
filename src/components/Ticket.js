@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { axiosWithAuth } from '../utils/axiosWithAuth'
 
 
@@ -10,17 +10,31 @@ const Ticket = props => {
 
     } = props
 
-    const date = new Date(data.created_at).toDateString()
+    const [ user, setUser ] = useState(null)
+
+    //Ticket created at timestamp for ticket footer 
+    const timestamp = new Date(data.created_at).toGMTString()
 
     //Checks if user has permission to resolve tickets
     const isAdmin = JSON.parse(localStorage.getItem('is_admin'))
+
+    useEffect(() => {
+        axiosWithAuth().get(`/api/users/${data.user_id}`)
+            .then(res => {
+                console.log(res);
+                setUser(res.data);
+            })
+            .catch(err => {
+                console.log({ err })
+            })
+    }, [data.user_id])
 
     //Assigns or Returns tickets to the Queue
     const clickHandler = e => {
         e.preventDefault();
         const id = JSON.parse(localStorage.getItem('id'));
 
-        axiosWithAuth().put(`/api/tickets/${data.id}`, { ...data, is_assigned: !data.is_assigned, assigned_to: (data.is_assigned) ? 0 : id, is_resolved: (e.target.name === 'resolve') ? true : false })
+        axiosWithAuth().put(`/api/tickets/${data.id}`, { ...data, is_assigned: !data.is_assigned, assigned_to: (data.is_assigned) ? 0 : id })
             .then(res => {
                 console.log("Update", res)
                 setTicketQueue(ticketQueue.map(ticket => {
@@ -31,9 +45,24 @@ const Ticket = props => {
             .catch(err => {
                 console.log({ err })
             })
-
-
     }
+
+    const handleResolve = e => {
+        e.preventDefault();
+
+        axiosWithAuth().put(`/api/tickets/${data.id}`, { ...data, is_resolved: (e.target.name === 'resolve') ? true : false })
+            .then(res => {
+                console.log("Update", res)
+                setTicketQueue(ticketQueue.map(ticket => {
+                    return ticket.id === data.id ? res.data : ticket
+                }))
+
+            })
+            .catch(err => {
+                console.log({ err })
+            })
+    }
+
 
     const handleDelete = e => {
         e.preventDefault();
@@ -73,10 +102,11 @@ const Ticket = props => {
                     }
                     {/* Resolve Button */}
                     {
-                        isAdmin && data.is_assigned ?
+                        isAdmin && !data.is_resolved
+                        && data.is_assigned ?
                             <button
                                 name="resolve"
-                                onClick={clickHandler}
+                                onClick={handleResolve}
                             >
                                 Resolve
                         </button>
@@ -90,15 +120,14 @@ const Ticket = props => {
                         data.is_resolved ? <p>Resolved</p> : null
                     }
                     {/* Delete Ticket Button */}
-                    {
+                    {   
                         isAdmin &&
-                        data.is_resolved &&
-                            !data.is_assigned ?
+                        data.is_resolved ?
                             <button
                                 onClick={handleDelete}
-                            >Delete</button> :
-
-                            null
+                            >Delete</button> 
+                            
+                            : null
                     }
                 </div>
             </div>
@@ -109,9 +138,8 @@ const Ticket = props => {
 
             {/* Ticket Footer displays who created the ticket and the date */}
             <div className="ticket-footer">
-                <p>{`Submitted by: $user_id.first_name $user_id.last_name on ${date}`}</p>
+                <p>{`Posted by: ${user && user.first_name} ${user && user.cohort} on ${timestamp}`}</p>
             </div>
-
         </div>
     )
 }
