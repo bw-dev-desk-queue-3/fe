@@ -10,7 +10,10 @@ const Ticket = props => {
 
     } = props
 
-    const [ user, setUser ] = useState(null);
+    const [ user, setUser ] = useState(null)
+
+    //Ticket created at timestamp for ticket footer 
+    const timestamp = new Date(data.created_at).toGMTString()
 
     //Checks if user has permission to resolve tickets
     const isAdmin = JSON.parse(localStorage.getItem('is_admin'))
@@ -114,7 +117,7 @@ const Ticket = props => {
                     }
                     {/* Ticket Resolved indicator */}
                     {
-                        data.is_resolved ? <p className="error">Resolved</p> : null
+                        data.is_resolved ? <p>Resolved</p> : null
                     }
                     {/* Delete Ticket Button */}
                     {   
@@ -122,9 +125,9 @@ const Ticket = props => {
                         data.is_resolved ?
                             <button
                                 onClick={handleDelete}
-                            >Delete</button> :
-
-                            null
+                            >Delete</button> 
+                            
+                            : null
                     }
                 </div>
             </div>
@@ -133,8 +136,10 @@ const Ticket = props => {
                 <p>{data.description}</p>
             </div>
 
-            <p>Posted by: {user && user.first_name}</p>
-            <p>Cohort: {user && user.cohort}</p>
+            {/* Ticket Footer displays who created the ticket and the date */}
+            <div className="ticket-footer">
+                <p>{`Posted by: ${user && user.first_name} ${user && user.cohort} on ${timestamp}`}</p>
+            </div>
         </div>
     )
 }
