@@ -24,7 +24,7 @@ const Ticket = props => {
             .catch(err => {
                 console.log({ err })
             })
-    }, [])
+    }, [data.user_id])
 
     //Assigns or Returns tickets to the Queue
     const clickHandler = e => {
@@ -46,7 +46,6 @@ const Ticket = props => {
 
     const handleResolve = e => {
         e.preventDefault();
-        const id = JSON.parse(localStorage.getItem('id'));
 
         axiosWithAuth().put(`/api/tickets/${data.id}`, { ...data, is_resolved: (e.target.name === 'resolve') ? true : false })
             .then(res => {
