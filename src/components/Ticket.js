@@ -93,6 +93,10 @@ const Ticket = props => {
             //Adds AM to time and return
             else return `${hours}:${min} AM`
         }
+        //12 noon needs to have AM changed to PM
+        else if(hours === 12) {
+            return `${hours}:${min} PM`
+        }
         //If hours is > 12 we need to convert to 12 hr format and add PM
         else {
             hours -= 12
