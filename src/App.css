@@ -97,9 +97,10 @@ nav a {
   width: 45%;
   min-height: 300px;
   margin: 2% 1%;
-  border: 1px solid #000;
+  border: 1px solid #808080;
   padding: 2%;
-  box-shadow: 3px 3px 20px #404040;
+  box-shadow: 3px 3px 7px #404040;
+  border-radius: 15px;
 }
 
 .ticket h2 {
@@ -157,10 +158,13 @@ nav a {
   font-weight: bold;
 }
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 750px) {
   .ticket {
     width: 100%;
   }
+}
+
+@media only screen and (max-width: 450px) {
   .ticket > * {
     padding: 1% 3%;
   }
