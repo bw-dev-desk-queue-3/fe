@@ -78,6 +78,23 @@ const Ticket = props => {
             })
     }
 
+    //Converts timestamp time from 24 hr to 12 hr
+    const convertTime = time => {
+        let hours = parseInt(time.slice(0, 2))
+        let min = parseInt(time.slice(3, 5))
+        
+        if(hours < 12) {
+          return `${hours}:${min} AM`
+        }
+        else if(hours < 1) {
+          hours = 12
+          return `${hours}:${min} AM`
+        }
+        else {
+          hours -= 12
+         return `${hours}:${min} PM`
+        }
+      }
 
     return (
         <div id={data.id} className="ticket">
@@ -140,7 +157,7 @@ const Ticket = props => {
 
             {/* Ticket Footer displays who created the ticket and the date */}
             <div className="ticket-footer">
-                <p>{`Posted by: ${user && user.first_name} ${user && user.cohort} on ${date} ${time}`}</p>
+                <p>{`Posted by: ${user && user.first_name} ${user && user.cohort} on ${date} at ${convertTime(time)}`}</p>
             </div>
         </div>
     )
