@@ -62,8 +62,8 @@ nav a {
 
 .login button,
 .register button,
-.create-ticket button,
-.ticket-heading button {
+.create-ticket button
+ {
   border: 1px solid #808080;
   border-radius: 10px;
   padding: 1%;
@@ -114,18 +114,69 @@ nav a {
 }
 
 .ticket-heading button {
-  width: 100%;
-  margin: 0 1.5%;
+  display: block;
+  width: 80%;
+  align-self: center;
+  margin: 5% auto;
+  border: 2px solid;
   border-radius: 7px;
   padding: 2%;
   font-size: 1.2rem;
+  font-weight: bold;
+  background: #fff;
   outline: none;
-  box-shadow: 1px 1px #444;
+  transition: all 0.5s ease;
 }
 
-.ticket-heading button:active {
-  box-shadow: none;
+.ticket-heading button:hover{
+  cursor: pointer;
+  color: #fff;
 }
+
+.assign-btn {
+  color: #1d90ff;
+  border-color: #1d90ff;
+}
+
+.assign-btn:hover {
+  background: #1d90ff;
+  border-color: #1d90ff;
+  
+}
+
+.return-btn {
+  color: #ffa500;
+  border-color: #ffa500;
+}
+
+.return-btn:hover {
+  background: #ffa500;
+  border-color: #ffa500;
+}
+
+.resolve-btn {
+  color: #047504;
+  border-color: #047504;
+}
+
+.resolve-btn:hover {
+  background: #047504;
+  border-color: #047504;
+}
+
+.delete-btn {
+  color: #dc143c;
+  border-color: #dc143c;
+}
+
+.delete-btn:hover {
+  background: #dc143c;
+  border-color: #dc143c;
+}
+
+/* .ticket-heading button:active {
+  box-shadow: none;
+} */
 
 .ticket p {
   font-size: 1.6rem;
