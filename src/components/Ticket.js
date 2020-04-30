@@ -10,7 +10,7 @@ const Ticket = props => {
 
     } = props
 
-    const [ user, setUser ] = useState(null)
+    const [user, setUser] = useState(null)
 
     //Ticket created at timestamp for ticket footer 
     const date = new Date(data.created_at).toDateString()
@@ -82,19 +82,23 @@ const Ticket = props => {
     const convertTime = time => {
         let hours = parseInt(time.slice(0, 2))
         let min = parseInt(time.slice(3, 5))
-        
-        if(hours < 12) {
-          return `${hours}:${min} AM`
+
+        //if hours is < 13 then we don't need to change unless its 00:XX
+        if (hours < 12) {
+            //Checking to see if its 00:XX
+            if (hours < 1) {
+                hours = 12
+                return `${hours}:${min} AM`
+            }
+            //Adds AM to time and return
+            else return `${hours}:${min} AM`
         }
-        else if(hours < 1) {
-          hours = 12
-          return `${hours}:${min} AM`
-        }
+        //If hours is > 12 we need to convert to 12 hr format and add PM
         else {
-          hours -= 12
-         return `${hours}:${min} PM`
+            hours -= 12
+            return `${hours}:${min} PM`
         }
-      }
+    }
 
     return (
         <div id={data.id} className="ticket">
@@ -122,7 +126,7 @@ const Ticket = props => {
                     {/* Resolve Button */}
                     {
                         isAdmin && !data.is_resolved
-                        && data.is_assigned ?
+                            && data.is_assigned ?
                             <button
                                 name="resolve"
                                 onClick={handleResolve}
@@ -139,13 +143,13 @@ const Ticket = props => {
                         data.is_resolved ? <p>Resolved</p> : null
                     }
                     {/* Delete Ticket Button */}
-                    {   
+                    {
                         isAdmin &&
-                        data.is_resolved ?
+                            data.is_resolved ?
                             <button
                                 onClick={handleDelete}
-                            >Delete</button> 
-                            
+                            >Delete</button>
+
                             : null
                     }
                 </div>
