@@ -117,6 +117,7 @@ const Ticket = props => {
                         isAdmin &&
                             !data.is_resolved ?
                             <button
+                                className={data.is_assigned ? 'return-btn' : 'assign-btn'}
                                 value={data.is_assigned}
                                 onClick={clickHandler}>
                                 {/* Text of Btn wil be either Return or Assign */}
@@ -132,6 +133,7 @@ const Ticket = props => {
                         isAdmin && !data.is_resolved
                             && data.is_assigned ?
                             <button
+                                className="resolve-btn"
                                 name="resolve"
                                 onClick={handleResolve}
                             >
@@ -151,6 +153,7 @@ const Ticket = props => {
                         isAdmin &&
                             data.is_resolved ?
                             <button
+                                className="delete-btn"
                                 onClick={handleDelete}
                             >Delete</button>
 
