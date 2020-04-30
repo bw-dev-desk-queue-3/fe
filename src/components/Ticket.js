@@ -13,7 +13,8 @@ const Ticket = props => {
     const [ user, setUser ] = useState(null)
 
     //Ticket created at timestamp for ticket footer 
-    const timestamp = new Date(data.created_at).toGMTString()
+    const date = new Date(data.created_at).toDateString()
+    const time = new Date(data.created_at).toTimeString().slice(0, 5)
 
     //Checks if user has permission to resolve tickets
     const isAdmin = JSON.parse(localStorage.getItem('is_admin'))
@@ -77,6 +78,7 @@ const Ticket = props => {
             })
     }
 
+
     return (
         <div id={data.id} className="ticket">
             <div className="ticket-heading">
@@ -138,7 +140,7 @@ const Ticket = props => {
 
             {/* Ticket Footer displays who created the ticket and the date */}
             <div className="ticket-footer">
-                <p>{`Posted by: ${user && user.first_name} ${user && user.cohort} on ${timestamp}`}</p>
+                <p>{`Posted by: ${user && user.first_name} ${user && user.cohort} on ${date} ${time}`}</p>
             </div>
         </div>
     )
