@@ -134,19 +134,17 @@ nav a {
 }
 
 .assign-btn {
-  color: #1d90ff;
-  border-color: #1d90ff;
+  color: #2F2B4A;
 }
 
 .assign-btn:hover {
-  background: #1d90ff;
-  border-color: #1d90ff;
+  background: #2F2B4A;
+  border-color: #2F2B4A;
   
 }
 
 .return-btn {
   color: #ffa500;
-  border-color: #ffa500;
 }
 
 .return-btn:hover {
@@ -155,28 +153,22 @@ nav a {
 }
 
 .resolve-btn {
-  color: #047504;
-  border-color: #047504;
+  color: #06a006;
 }
 
 .resolve-btn:hover {
-  background: #047504;
-  border-color: #047504;
+  background: #06a006;
+  border-color: #06a006;
 }
 
 .delete-btn {
   color: #dc143c;
-  border-color: #dc143c;
 }
 
 .delete-btn:hover {
   background: #dc143c;
   border-color: #dc143c;
 }
-
-/* .ticket-heading button:active {
-  box-shadow: none;
-} */
 
 .ticket p {
   font-size: 1.6rem;
