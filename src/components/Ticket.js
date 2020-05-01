@@ -81,7 +81,7 @@ const Ticket = props => {
     //Converts timestamp time from 24 hr to 12 hr
     const convertTime = time => {
         let hours = parseInt(time.slice(0, 2))
-        let min = time.slice(3, 5)
+        const min = time.slice(3, 5)
 
         //if hours is < 13 then we don't need to change unless its 00:XX
         if (hours < 12) {
